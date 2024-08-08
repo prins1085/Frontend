@@ -11,7 +11,7 @@ export default ({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: "https://backend-8kcn.onrender.com",
+          target: process.env.VITE_BACKEND_PROXY,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
         }

@@ -1,15 +1,11 @@
-// ExampleComponent.jsx
 import React from 'react';
-import { useTestQuery } from '../../api/auth';
 
 const Test = () => {
-
-  const { data } = useTestQuery();
-
-  console.log(data?.data,"dasadta")
-
-  
-  return <div>Data: {data?.data}</div>;
+  return (
+    <div>
+      <p>Welcome to my React app!</p>
+    </div>
+  );
 };
 
 export default Test;
