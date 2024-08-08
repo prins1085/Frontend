@@ -13,7 +13,7 @@ export default ({ mode }) => {
         '/api': {
           target: process.env.VITE_BACKEND_PROXY,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+          rewrite: (path) => path.replace(/^\/api/, ''),
         }
       }
     }
