@@ -4,10 +4,25 @@ import GridBoxLayout from '../../components/common/GridBoxLayout';
 import { ReactComponent as Google } from '../../assets/google_logo.svg';
 import { ReactComponent as EyeOpen } from '../../assets/eye_open.svg';
 import { ReactComponent as EyeClose } from '../../assets/eye_close.svg';
+import { useRegisterMutation } from '../../api/auth';
 
 const Register = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
+
+    const [register] = useRegisterMutation()
+
+    const formSubmitHandler = async (event) => {
+        event.preventDefault();
+
+        const data = {
+            email: event.target.email.value,
+            password: event.target.password.value,
+            fullName: event.target.name.value
+        }
+
+        const response = await register(data)
+    }
 
     const showPasswordHandler = () => {
         setShowPassword(!showPassword);
@@ -23,7 +38,7 @@ const Register = () => {
                     <h1 className="text-2xl font-bold mb-2">Create an account</h1>
                     <p className="text-gray-300 text-sm">Enter your details below to get started.</p>
                 </div>
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={formSubmitHandler}>
                     <button className="inline-flex w-fit mx-auto items-center justify-center bg-gray-200 text-black text-sm font-medium rounded-md h-10 px-4 hover:bg-gray-300">
                         <Google className="mr-2" />
                         Sign up with Google
